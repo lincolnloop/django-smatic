@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from static_installer import get_version
+from smatic import get_version
 
 setup(
     name='django-smatic',
