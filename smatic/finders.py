@@ -89,8 +89,6 @@ class SassFinder(BaseFinder):
                     break
             if not match:
                 continue
-            match = finder.find('%s.scss' % name)
-            continue
             converted = self.convert(match, path)
             if converted:
                 if all:
