@@ -6,4 +6,4 @@ def extra_ignores(command_class):
         if getattr(option, 'dest', None) != 'ignore_patterns':
             continue
         # Add scss to the default files to exclude.
-        option.default = settings.SASS_EXTENSIONS
+        option.default = list(settings.SASS_EXTENSIONS)
