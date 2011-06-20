@@ -1,5 +1,6 @@
 import os
 import shlex
+import pipes
 from subprocess import PIPE, Popen
 
 from django.contrib.staticfiles.finders import get_finders, BaseFinder
@@ -33,11 +34,11 @@ class SassFinder(BaseFinder):
         output_dir = os.path.dirname(absolute_output_filename)
         if not os.path.isdir(output_dir):
             os.makedirs(output_dir)
-        cmd = "%(bin)s -t %(sass_style)s -C %(input)s %(output)s" % {
+        cmd = '%(bin)s -t %(sass_style)s -C %(input)s %(output)s' % {
             'bin': settings.SASS_BIN,
             'sass_style': 'compact',
-            'input': absolute_file_path,
-            'output': absolute_output_filename
+            'input': pipes.quote(absolute_file_path),
+            'output': pipes.quote(absolute_output_filename),
         }
 
         process = Popen(shlex.split(str(cmd)), stderr=PIPE)
